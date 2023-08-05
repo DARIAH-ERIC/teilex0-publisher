@@ -112,6 +112,9 @@ pb-collapse > div{
 .thumbnail.jats{
     background-image: url(../images/pile-colorful-magazines-table.jpg);
 }
+.thumbnail.teilex0{
+    background-image: url(../images/dictionary.jpg);
+}
 
 .attribution{
     position: absolute;
