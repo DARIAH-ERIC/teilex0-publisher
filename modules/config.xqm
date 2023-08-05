@@ -9,6 +9,7 @@ module namespace config = "http://www.tei-c.org/tei-simple/config";
 import module namespace http = "http://expath.org/ns/http-client";
 import module namespace nav = "http://www.tei-c.org/tei-simple/navigation" at "navigation.xql";
 import module namespace tpu = "http://www.tei-c.org/tei-publisher/util" at "lib/util.xql";
+import module namespace custom-config = "http://www.tei-c.org/tei-simple/custom-config" at "custom-config.xqm";
 
 declare namespace templates = "http://exist-db.org/xquery/html-templating";
 
@@ -16,6 +17,7 @@ declare namespace repo = "http://exist-db.org/xquery/repo";
 declare namespace expath = "http://expath.org/ns/pkg";
 declare namespace jmx = "http://exist-db.org/jmx";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
+declare namespace array = "http://www.w3.org/2005/xpath-functions/array";
 
 (:~~
  : A list of regular expressions to check which external hosts are
@@ -126,7 +128,7 @@ declare variable $config:pagination-fill := 5;
  : Display configuration for facets to be shown in the sidebar. The facets themselves
  : are configured in the index configuration, collection.xconf.
  :)
-declare variable $config:facets := [
+declare variable $config:facets := array:join( ( [
     map {
         "dimension": "place",
         "heading": "annotations.place",
@@ -179,7 +181,7 @@ declare variable $config:facets := [
         "max": 15,
         "hierarchical": false()
     }
-];
+], $custom-config:facets ));
 
 (:
  : The function to be called to determine the next content chunk to display.
