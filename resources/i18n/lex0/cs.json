@@ -1,0 +1,28 @@
+{
+    "lex0" : {
+        "facets" : {
+            "domain": "Sémantický okruh",
+            "object-language": "Výchozí jazyk",
+            "target-language": "Cílový jazyk",
+            "polysemy": "Polysémie",
+            "dictionary": "Slovník",
+            "entry-type" : "Typ heslové statě",
+            "attitude" : "Charakteristika postojová",
+            "frequency" : "Charakteristika frekvenční",
+            "geographic" : "Charakteristika geografická",
+            "hint" : "Charakteristika (ostatní)",
+            "meaningType" : "Charakteristika typu významu",
+            "normativity" : "Charakteristika normativní",
+            "socioCultural" : "Charakteristika sociokulturní",
+            "textType" : "Charakteristika typu textu",
+            "time" : "Charakteristika časová",
+            "attestation" : "Zdroje",
+            "attestation-author" : "Zdroje (autor)",
+            "attestation-title" : "Zdroje (titul)",
+            "metamark" : "Metaznačka",
+            "partOfSpeech": "Slovní druh",
+            "pos" : "Slovní druh",
+            "show-all": "Zobrazit vše"
+        }
+    }
+}
