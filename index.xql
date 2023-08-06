@@ -155,5 +155,7 @@ declare function idx:get-attestation-bibl($entry as element()?) {
   return
    if(not($bibl/tei:author)) then $bibl/tei:title
    else if(not($bibl/tei:title)) then $bibl/tei:author
-   else concat($bibl/tei:author, ', ', $bibl/tei:title)
+   else if (count($bibl/tei:author) eq 1 and count($bibl/tei:title) eq 1) then
+    concat($bibl/tei:author, ', ', $bibl/tei:title)
+   else ($bibl/tei:author, $bibl/tei:title)
 };
