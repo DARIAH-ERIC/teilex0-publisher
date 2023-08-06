@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?teipublisher template="view.html" odd="lex0.odd" view="page"?>
+<?teipublisher template="lex0-proofreading.html" odd="teilex0.odd" view="page"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="MORAIS.DLP.1" type="lex-0">
    <teiHeader xml:id="MORAIS.DLP.1-teiHeader">
       <fileDesc>
@@ -53,8 +53,8 @@
          <div type="letter" n="I">
             <head>I</head>
             <div>
-               <pb n="740"/>
-               <cb n="2"/>
+             <pb n="740" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-740.png"/>
+               <cb n="1"/>
                <fw place="left" type="pageNum">740</fw>
                <fw place="middle" type="headword">ITI</fw>
                <entry xml:id="MORAIS.DLP.1.ITEM" xml:lang="pt">
@@ -336,7 +336,7 @@
                   <lbl expand="verbi gratia" xml:lang="la" rend="italic">v. g.</lbl>
                   <metamark function="exampleDelimiter">,,</metamark>
                   <cit type="example" xml:lang="pt">
-                     <quote>não já que eu o dezeje ; nunca já tal farei ; já diſto são ſofregas</quote>
+                   <quote>não já que eu o <cb n="2"/> dezeje ; nunca já tal farei ; já diſto são ſofregas</quote>
                      <metamark function="exampleDelimiter">,,</metamark>
                      <bibl type="attestation" source="#???">
                       <title>Eufr.</title>
@@ -578,7 +578,9 @@
                <sense xml:id="MORAIS.1.DLP.JACENTE.sense.2">
                   <metamark function="senseDelimiter">§</metamark>
                   <cit type="example">
-                     <quote>Herança jacente , a que ainda não foi adida, ou repartida entre os herdeiros.</quote>
+                   <quote>Herança jacente , a que ainda não foi adida, ou <pb n="741" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-741.png" />
+                    <cb n="1"/>
+                    <fw place="middle" type="headword">JAC</fw> repartida entre os herdeiros.</quote>
                   </cit>  
                   <bibl type="attestation" corresp="mor.bibl.authr.titl">
                      <title>Ord. Lib.</title>
@@ -1408,8 +1410,8 @@
                   </form>
                   <metamark function="senseDelimiter">.</metamark>
             </entry>
-               <pb n="742"/>
-               <cb n="2"/>
+             <pb n="742" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-742.png" />
+               <cb n="1"/>
                <fw place="left" type="pageNum">742</fw>
                <fw place="middle" type="headword">JAN</fw>
                <entry xml:id="MORAIS.DLP.1.JANGADA" xml:lang="pt">
@@ -1758,10 +1760,8 @@
                   <metamark function="senseDelimiter">.</metamark> 
                </sense>
             </entry>
-               <cb n="1"/>
-               <fw>
-                  <hi rend="bold">JAR</hi>
-               </fw>
+               <cb n="2"/>
+               <fw  place="middle" type="headword">JAR</fw>
                <entry xml:id="MORAIS.DLP.1.JARDINEIRO" xml:lang="pt">
                <form type="lemma">
                   <orth>JARDINEIRO</orth>
@@ -2115,10 +2115,9 @@
                   <metamark function="senseDelimiter">.</metamark> 
                </sense>
             </entry>
-               <cb n="2"/>
-               <fw>
-                  <hi rend="bold">JAV</hi>
-               </fw>
+             <pb n="743" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-743.png" />
+             <cb n="1"/>
+             <fw place="middle" type="headword">JAV</fw>
                <entry xml:id="MORAIS.DLP.1.JAVRADURA" xml:lang="pt">
                <form type="lemma">
                   <orth>JAVRADURA</orth>
@@ -3348,10 +3347,8 @@
                   </bibl>
                </sense>
             </entry>
-               <cb n="1"/>
-               <fw>
-                  <hi rend="bold">JOG</hi>
-               </fw>
+               <cb n="2"/>
+               <fw  place="middle" type="headword">JOG</fw>
                <entry xml:id="MORAIS.DLP.1.JOGO" xml:lang="pt">
                <form type="lemma">
                   <orth>JOGO</orth>
@@ -3648,10 +3645,9 @@
                   </entry>
                </sense>
             </entry>
-               <cb n="2"/>
-               <fw>
-                  <hi rend="bold">JON</hi>
-               </fw>
+               <pb n="745" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-745.png" />
+               <cb n="1"/>
+               <fw  place="middle" type="headword">JON</fw>
                <entry xml:id="MORAIS.DLP.1.JOGUINHO" xml:lang="pt">
                <form type="lemma">
                   <orth>JOGUINHO</orth>
@@ -4016,8 +4012,7 @@
                   <citedRange unit="folium"><hi>f.</hi> 577.</citedRange>
                </bibl>
             </entry>
-               <pb n="745"/>
-               <cb n="1"/>
+               <cb n="2"/>
                <fw place="middle" type="headword">IOV</fw>
                <fw place="right" type="pageNum">745</fw>
                <entry xml:id="MORAIS.DLP.1.JOVENCA" xml:lang="pt">
@@ -4482,8 +4477,8 @@
                   <metamark function="senseDelimiter">.</metamark>
                </bibl>
             </entry>
-               <pb n="746"/>
-               <cb n="2"/>
+             <pb n="746" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-746.png"/>
+               <cb n="1"/>
                <fw place="left" type="pageNum">746</fw>
                <fw place="middle" type="headword">JUD</fw>
                <entry xml:id="MORAIS.DLP.1.JUDAISMO" xml:lang="pt">
@@ -4830,9 +4825,7 @@
                </gramGrp>
                <sense xml:id="MORAIS.DLP.1.JUGO.sense.1">
                   <def>canga em que ſe junguem os <cb n="2"/>
-                     <fw>
-                        <hi rend="bold">JUG</hi>
-                     </fw> bois para a lavoira , ou para tirarem por carro</def>
+                   <fw place="middle" type="headword">JUG</fw> bois para a lavoira , ou para tirarem por carro</def>
                   <metamark function="senseDelimiter">.</metamark>
                </sense>
                <metamark function="senseDelimiter">§</metamark>
@@ -5215,10 +5208,9 @@
                </xr>
                <metamark function="senseDelimiter">.</metamark>
             </entry>
-               <cb n="2"/>
-               <fw>
-                  <hi rend="bold">JUL</hi>
-               </fw>
+             <pb n="747" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-747.png"/>
+               <cb n="1"/>
+               <fw place="middle" type="headword">JUL</fw>
                <entry xml:id="MORAIS.DLP.1.JULGAR" xml:lang="pt">
                <form type="lemma">
                   <orth>JULGAR</orth>
@@ -6228,9 +6220,7 @@
                   <hi rend="normal">O lucro ,</hi>
                </sense>
                <cb n="2"/>
-               <fw>
-                  <hi rend="bold">JUR</hi>
-               </fw>
+                <fw place="middle" type="headword">JUR</fw>
                <hi rend="normal">que ſe dá pelo uſo do dinheiro , além do pagamento do principal , ou capital , uſura , ganho , intereſſe , logro.</hi>
             </entry>
                <entry xml:id="MORAIS.DLP.1.JURUBACA" xml:lang="pt">
@@ -6664,12 +6654,11 @@
                   <metamark function="senseDelimiter">.</metamark>
                </sense>
                <metamark function="senseDelimiter">§</metamark>
+                <pb n="749" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-749.png"/>
+                <cb n="1"/>
+                <fw place="middle" type="headword">JUS</fw>
                <sense xml:id="MORAIS.DLP.1.JUSTIFICADO.sense.3"/>
-                  <def><pb n="749" facs="MORAIS.DLP.1/volume-1/MORAIS.DLP.1.volume-1.page-749.png"/>
-                     <cb n="1"/>
-                     <fw>
-                        <hi rend="bold">JUS</hi>
-                     </fw> Feito , em juſtificação , acompanhado della</def>
+                  <def> Feito , em juſtificação , acompanhado della</def>
                   <lbl expand="verbi gratia" xml:lang="la"><hi>v. g.</hi></lbl>
                <metamark function="exampleDelimiter">,,</metamark>
                <cit type="example" xml:lang="pt">
@@ -6837,8 +6826,7 @@
                   </entry>
                </sense>
             </entry>
-               <pb n="749"/>
-               <cb n="1"/>
+               <cb n="2"/>
                <fw place="middle" type="headword">JUS</fw>
                <fw place="right" type="pageNum">749</fw>
                <entry xml:id="MORAIS.DLP.1.JUSTO_s-m" type="homonymicEntry" xml:lang="pt">
