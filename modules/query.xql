@@ -21,6 +21,7 @@ module namespace query="http://www.tei-c.org/tei-simple/query";
 import module namespace tei-query="http://www.tei-c.org/tei-simple/query/tei" at "query-tei.xql";
 import module namespace docbook-query="http://www.tei-c.org/tei-simple/query/docbook" at "query-db.xql";
 import module namespace jats-query="http://www.tei-c.org/tei-simple/query/jats" at "query-jats.xql";
+import module namespace lex0-query="http://www.tei-c.org/tei-simple/query/lex0" at "query-lex0.xql";
 import module namespace config="http://www.tei-c.org/tei-simple/config" at "config.xqm";
 import module namespace nav="http://www.tei-c.org/tei-simple/navigation" at "navigation.xql";
 
@@ -65,13 +66,14 @@ declare %private function query:dispatch($config as map(*), $function as xs:stri
  : Query the data set.
  :
  : @param $fields a sequence of field names describing the type of content to query,
- :  e.g. "heading" or "text"
+ :  e.g. "heading", "text" or "entry".
  : @param $query the query string
  : @param $target-texts a sequence of identifiers for texts to query. May be empty.
  :)
 declare function query:query-default($fields as xs:string+, $query as xs:string,
     $target-texts as xs:string*, $sortBy as xs:string*) {
-    tei-query:query-default($fields, $query, $target-texts, $sortBy),
+    (lex0-query:query-default($fields, $query, $target-texts, $sortBy),
+    tei-query:query-default($fields, $query, $target-texts, $sortBy))[1],
     docbook-query:query-default($fields, $query, $target-texts, $sortBy),
     jats-query:query-default($fields, $query, $target-texts, $sortBy)
 };
@@ -103,7 +105,8 @@ declare function query:options($sortBy as xs:string*, $field as xs:string?) {
 
 declare function query:query-metadata($root as xs:string?, $field as xs:string?, $query as xs:string?, $sort as xs:string) {
     let $results := (
-        tei-query:query-metadata($root, $field, $query, $sort) |
+        (lex0-query:query-metadata($root, $field, $query, $sort),
+        tei-query:query-metadata($root, $field, $query, $sort))[1] |
         docbook-query:query-metadata($root, $field, $query, $sort) |
         jats-query:query-metadata($root, $field, $query, $sort)
     )
@@ -135,7 +138,8 @@ declare function query:get-current($config as map(*), $div as node()?) {
 };
 
 declare function query:autocomplete($doc as xs:string?, $fields as xs:string+, $q as xs:string) {
-    tei-query:autocomplete($doc, $fields, $q),
+    (lex0-query:autocomplete($doc, $fields, $q),
+    tei-query:autocomplete($doc, $fields, $q))[1],
     docbook-query:autocomplete($doc, $fields, $q),
     jats-query:autocomplete($doc, $fields, $q)
 };
