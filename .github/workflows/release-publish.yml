@@ -33,6 +33,6 @@ jobs:
       - name: GH Release
         uses: softprops/action-gh-release@v0.1.15
         with:
-          name: MORDigital Web Applicaton ${{ github.ref_name }}
+          name: TEI Lex-0 Publisher ${{ github.ref_name }}
           files: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/*.xar
           fail_on_unmatched_files: true
