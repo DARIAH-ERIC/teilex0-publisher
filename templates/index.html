@@ -51,7 +51,7 @@
 </head>
 
 <body>
-    <pb-page data-template="pages:pb-page" api-version="1.0" unresolved="unresolved" theme="resources/css/home.css">
+    <pb-page data-template="pages:pb-page" api-version="1.0" unresolved="unresolved" theme="resources/css/home.css" locales="resources/i18n/{{ns}}/{{lng}}.json" locale-fallback-ns="lex0">
         <app-drawer-layout force-narrow="force-narrow">
             <app-drawer slot="drawer" align="right">
                 <div class="drawer-content">
@@ -90,6 +90,7 @@
                                                 <pb-select label="search.scope" name="field" value="${field}" data-template="pages:parse-params">
                                                     <paper-item value="text"><pb-i18n key="search.content"></pb-i18n></paper-item>
                                                     <paper-item value="title"><pb-i18n key="search.title"></pb-i18n></paper-item>
+                                                    <paper-item value="entry"><pb-i18n key="search.entry"></pb-i18n></paper-item>
                                                 </pb-select>
                                             </pb-custom-form>
                                             <pb-search id="search-form" subscribe="search" data-template="pages:parse-params" value="${query}"
