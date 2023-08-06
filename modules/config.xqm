@@ -199,7 +199,7 @@ declare variable $config:css-content-class := "content";
  : domain will share their users, so a user logged into application A
  : will be able to access application B.
  :)
-declare variable $config:login-domain := "org.exist.tei-simple";
+declare variable $config:login-domain := ($custom-config:login-domain, "org.exist.tei-simple")[1];
 
 (:~
  : Configuration XML for Apache FOP used to render PDF. Important here
