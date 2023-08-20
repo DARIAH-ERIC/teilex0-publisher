@@ -31,7 +31,7 @@
             <text match="//tei:taxonomy/tei:category/tei:catDesc"/>
             <text qname="tei:entry">
                 <!--
-                  Namining rules:
+                  Naming conventions:
             
                   name of the field = simple, user friendly (can be in the URL)
                   name of the facet = simple, user friendly (can be in the URL)
