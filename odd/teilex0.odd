@@ -3,7 +3,7 @@
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title>TEI Lex-0
+                <title>TEI Lex-0 (DARIAH)
                     <desc>Default structure for monolingual dictionary with inline sense, i.e. entry in one paragraph, and with basic formatting (bold, italic, strikethrough).</desc>
                 </title>
             </titleStmt>
