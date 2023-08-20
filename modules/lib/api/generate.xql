@@ -280,6 +280,58 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                     <text match="//tei:listPerson/tei:person/tei:persName"/>
                     <text match="//tei:listOrg/tei:org/tei:orgName"/>
                     <text match="//tei:taxonomy/tei:category/tei:catDesc"/>
+                    <text qname="tei:entry">
+                        <!--
+                        Naming conventions:
+                    
+                        name of the field = simple, user friendly (can be in the URL)
+                        name of the facet = simple, user friendly (can be in the URL)
+                        name of the parameter for nav:get-metadata function: XPath-like
+                        
+                        {element-name}-{XYZ}
+                        {attribute-name}-{XYZ}
+                        {element-name[attribute-name]}-{XYZ}
+                        {element-name[attribute-name=attribute-value]}-{XYZ}
+                    
+                        {XYZ}:
+                        -{content} = content of the element
+                        -{value} = value of the attribute
+                        -{realisation} = either value of the attribute, or content of the element
+                        
+                        -->
+                        <field name="sortKey" expression="nav:get-metadata(., 'sortKey-realisation')"/>
+                        <field name="letter" expression="nav:get-metadata(., 'head[@type=letter]-content')"/>
+                        <field name="chapter-id" expression="nav:get-metadata(., 'chapter[@xml:id]-value')"/>
+                        <field name="chapter" expression="nav:get-metadata(., 'div[@type=letter]/@n-content')"/>
+                        <field name="lemma" expression="nav:get-metadata(., 'form[@type=lemma]-content')"/>
+                        <field name="definition" expression="nav:get-metadata(., 'def-content')"/>
+                        <field name="example" expression="nav:get-metadata(., 'cit[@type=example]-content')"/>
+                        <field name="pos" expression="nav:get-metadata(., 'gram[@type=pos]-content')"/>
+                        <facet dimension="dictionary" expression="nav:get-metadata(ancestor::tei:TEI, 'title[@type=main]-content')"/>
+                        <facet dimension="objectLanguage" expression="nav:get-metadata(., 'orth[xml:lang]-content')"/>
+                        <facet dimension="pos" expression="nav:get-metadata(., 'gram[@type=pos]-realisation')"/>
+                        <facet dimension="polysemy" expression="nav:get-metadata(., 'polysemy')"/>
+                        
+                        <field name="gloss" expression="nav:get-metadata(., 'gloss-content')"/>
+                        
+                        <facet dimension="entry-type" expression="nav:get-metadata(., 'entry[@type]-realisation')"/>
+                        
+                        <facet dimension="attitude" expression="nav:get-metadata(., 'usg[@type=attitude]-realisation')"/>
+                        <facet dimension="domain" expression="nav:get-metadata(., 'usg[@type=domain]-realisation')"/>
+                        <facet dimension="frequency" expression="nav:get-metadata(., 'usg[@type=frequency]-realisation')"/>
+                        <facet dimension="geographic" expression="nav:get-metadata(., 'usg[@type=geographic]-realisation')"/>
+                        <facet dimension="hint" expression="nav:get-metadata(., 'usg[@type=hint]-realisation')"/>
+                        <facet dimension="meaningType" expression="nav:get-metadata(., 'usg[@type=meaningType]-realisation')"/>
+                        <facet dimension="normativity" expression="nav:get-metadata(., 'usg[@type=normativity]-realisation')"/>
+                        <facet dimension="socioCultural" expression="nav:get-metadata(., 'usg[@type=socioCultural]-realisation')"/>
+                        <facet dimension="textType" expression="nav:get-metadata(., 'usg[@type=textType]-realisation')"/>
+                        <facet dimension="time" expression="nav:get-metadata(., 'usg[@type=time]-realisation')"/>
+                        
+                        <facet dimension="attestation" expression="nav:get-metadata(., 'bibl[@type=attestation]-realisation')"/>
+                        <facet dimension="attestation-author" expression="nav:get-metadata(., 'bibl[@type=attestation]/author-content')"/>
+                        <facet dimension="attestation-title" expression="nav:get-metadata(., 'bibl[@type=attestation]/title-content')"/>
+                        <facet dimension="metamark" expression="nav:get-metadata(., 'metamark[@function]-value')" />
+                    </text>
                     <text qname="dbk:article">
                         <field name="title" expression="nav:get-metadata(., 'title')"/>
                         <field name="author" expression="nav:get-metadata(., 'author')"/>
@@ -353,7 +405,9 @@ declare function deploy:expand($collection as xs:string, $resource as xs:string,
 
 declare function deploy:store-libs($target as xs:string, $userData as xs:string+, $permissions as xs:string) {
     let $path := $config:app-root || "/modules"
-    for $lib in ("map.xql", "facets.xql", "annotation-config.xqm", "nlp-config.xqm", "iiif.xql", xmldb:get-child-resources($path)[starts-with(., "navigation")],
+    for $lib in ("map.xql", "facets.xql", "iiif.xql",
+        xmldb:get-child-resources($path)[matches(., "-config\.xq?")],
+        xmldb:get-child-resources($path)[starts-with(., "navigation")],
         xmldb:get-child-resources($path)[starts-with(., "query")])
     return (
         xmldb:copy-resource($path, $lib, $target || "/modules", $lib)
