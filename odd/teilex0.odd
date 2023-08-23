@@ -48,6 +48,10 @@
                         <desc>Dictionary entry that is not part of another sense (separate entry or homonymic entry)</desc>
                     </model>
                 </elementSpec>
+                <elementSpec ident="sense" mode="add">
+                    <model predicate="not(.//form) and $parameters?entry-parts='headword'" behaviour="omit" />
+                    <model behaviour="inline" />
+                </elementSpec>
                 <elementSpec ident="quote" mode="change">
                     <model predicate="$parameters?entry-parts='headword'" behaviour="omit" />
                     <model predicate="ancestor::entry" behaviour="inline" useSourceRendition="true">
@@ -55,7 +59,7 @@
                     </model>
                     <model predicate="ancestor::p" behaviour="inline" useSourceRendition="true">
                         <desc>If it is inside a paragraph then it is inline, otherwise it is block level</desc>
-                        <outputRendition xml:space="preserve" scope="before">content: '‘'</outputRendition>
+                        <outputRendition xml:space="preserve" scope="before">content: '‘';</outputRendition>
                         <outputRendition xml:space="preserve" scope="after">content: '’';</outputRendition>
                     </model>
                     <model behaviour="block" useSourceRendition="true">
