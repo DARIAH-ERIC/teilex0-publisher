@@ -20,8 +20,8 @@
             "attestation-author" : "Attestation (author)",
             "attestation-title" : "Attestation (title)",
             "metamark" : "Metamark",
-            "partOfSpeech": "Part-of-speech",
-            "pos" : "Slovní druh",           
+            "partOfSpeech": "Part of speech",
+            "pos" : "Part of speech",           
             "show-all": "Show all"
         }
     }
