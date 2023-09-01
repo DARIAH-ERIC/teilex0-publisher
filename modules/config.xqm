@@ -146,6 +146,7 @@ declare variable $config:facets := array:join( ( [
                 case "en" return "English"
                 case "pl" return "Polish"
                 case "uk" return "Ukrainian"
+                case "pt" return "Portuguese"
                 default return $label
         }
     },
