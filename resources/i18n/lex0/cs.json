@@ -1,7 +1,7 @@
 {
     "lex0" : {
         "facets" : {
-            "domain": "Sémantický okruh",
+            "domain": "Charakteristika sémantického okruhu",
             "object-language": "Výchozí jazyk",
             "target-language": "Cílový jazyk",
             "polysemy": "Polysémie",

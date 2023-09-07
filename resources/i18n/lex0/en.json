@@ -1,7 +1,7 @@
 {
     "lex0" : {
         "facets" : {
-            "domain": "Domain",
+            "domain": "Domain label",
             "object-language": "Object language",
             "target-language": "Target language",
             "polysemy": "Polysemy",
