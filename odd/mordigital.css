@@ -11,6 +11,24 @@
     font-style: normal;
 }
 
+.lex0.entry {
+    text-align: left;
+}
+
+.join-left {
+    margin-left: -0.3em;
+}
+
+.usg.attitude  {color: rosybrown; }
+.usg.domain  {color: green; }
+.usg.frequency {color: blue; }
+.usg.geographic {color: orange; }
+.usg.meaningType {color: red; }
+.usg.socioCultural {color: blue; }
+.usg.temporal {color: darkgoldenrod; }
+.usg.textType {color: violet; }
+.usg.time {color: darkgoldenrod; }
+
 div[class|=tei] > h2[class|=tei] {
     text-align: center;
     font-size: 1.25rem;
