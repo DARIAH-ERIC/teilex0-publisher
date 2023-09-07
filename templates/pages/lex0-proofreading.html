@@ -32,8 +32,16 @@
                 padding: 0 20px;
             }
             
+
             .content-body pb-facsimile {
-            flex: 1 1;
+                flex: 1 1;
+                --pb-facsimile-height: var(--pb-view-height);
+            }
+
+            .content-body .preview {
+                flex: 1 1;
+            }
+            aside pb-facsimile {
                 --pb-facsimile-height: var(--pb-view-height);
             }
 
@@ -70,9 +78,22 @@
                 </section>
                 <main class="content-body">
                     <pb-view id="view1" src="document1" column-separator=".tei-cb" append-footnotes="append-footnotes"
-                        subscribe="transcription" emit="transcription" wait-for="#facsimile" />
-                    <pb-facsimile id="facsimile" type="image" show-navigation-control="show-navigation-control" visibility-ratio="0" show-home-control="show-home-control" default-zoom-level="0" subscribe="transcription"/>
-                    </main>
+                      subscribe="transcription" emit="transcription" wait-for="#facsimile" />
+                    <pb-facsimile id="facsimile" type="image" show-navigation-control="show-navigation-control"
+                      visibility-ratio="0" show-home-control="show-home-control" default-zoom-level="0" subscribe="transcription"/>
+                      <!-- <aside class="preview">
+                        <pb-tabs>
+                         <paper-tab slot="tab">Facsimile</paper-tab>
+                         <paper-tab slot="tab">TEI</paper-tab>
+                         <div slot="page">
+                           <p>Facsimile</p>
+                         <pb-facsimile id="facsimile" type="image" show-navigation-control="show-navigation-control"
+                                        visibility-ratio="0" show-home-control="show-home-control" default-zoom-level="0" subscribe="transcription"/>
+                         </div>
+                     <pb-code-highlight slot="page" id="output" language="xml" theme="default"></pb-code-highlight>
+                 </pb-tabs>
+               </aside> -->
+                  </main>
                 </app-header-layout>
             </app-drawer-layout>
         </pb-page>
