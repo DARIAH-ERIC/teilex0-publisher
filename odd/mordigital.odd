@@ -117,7 +117,13 @@
                     <model predicate="@type='domain'" behaviour="inline" cssClass="domain">
                         <desc>Domain labels (allways in italic)</desc>
                     </model>
-                    <model behaviour="inline" useSourceRendition="true" />
+                    <model behaviour="inline" useSourceRendition="true">
+                        <param name="type" value="@type"/>
+                        <param name="rend" value="@rend"/>
+                        <pb:template xmlns="">
+                            <span class="usg [[type]] [[rend]]">[[content]]</span>
+                        </pb:template>
+                    </model> 
                 </elementSpec>
                 <elementSpec ident="hi" mode="change">
                     <model predicate="$parameters?entry-parts='headword'" behaviour="omit" />
@@ -131,6 +137,9 @@
                     <model predicate="$parameters?entry-parts='headword'" behaviour="omit" />
                     <model predicate="parent::listBibl" behaviour="listItem"/>
                     <model behaviour="inline"/>
+                </elementSpec>
+                <elementSpec ident="metamark" mode="change">
+                    <model predicate="@join='left'" behaviour="inline" cssClass="join-left" useSourceRendition="true" />
                 </elementSpec>
             </schemaSpec>
         </body>
