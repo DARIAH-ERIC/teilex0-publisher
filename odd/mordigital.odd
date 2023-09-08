@@ -139,7 +139,15 @@
                     <model behaviour="inline"/>
                 </elementSpec>
                 <elementSpec ident="metamark" mode="change">
+                    <model predicate="$parameters?entry-parts='headword'" behaviour="omit" />
+                    <model behaviour="inline" useSourceRendition="true"/>
                     <model predicate="@join='left'" behaviour="inline" cssClass="join-left" useSourceRendition="true" />
+                </elementSpec>
+                <elementSpec ident="pc" mode="change">
+                    <model predicate="$parameters?entry-parts='headword'" behaviour="omit" />
+                    <model predicate="@join='left'" behaviour="inline" cssClass="join-left" useSourceRendition="true" />
+                    <model predicate="@join='right'" behaviour="inline" cssClass="join-right" useSourceRendition="true" />
+                    <model behaviour="inline" useSourceRendition="true"/>
                 </elementSpec>
             </schemaSpec>
         </body>
