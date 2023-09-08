@@ -40,6 +40,35 @@
     <text>
         <body>
             <schemaSpec start="TEI teiCorpus" ident="teilex0" source="teipublisher.odd">
+                <!-- Elements from teiHeader -->
+                <elementSpec ident="editionStmt" mode="change">
+                    <model behaviour="block" predicate="$parameters?header='short'" />
+                </elementSpec>
+                <elementSpec ident="principal" mode="change">
+                    <model predicate="$parameters?header='short' and (following-sibling::editor)" behaviour="inline">
+                        <desc>Principal researcher of the project</desc>
+                        <outputRendition xml:space="preserve" scope="after">content: ' – ';</outputRendition>
+                    </model>
+                    <model predicate="ancestor::teiHeader" behaviour="inline" />
+                </elementSpec>
+                <elementSpec ident="editor" mode="change">
+                    <model predicate="$parameters?header='short' and not(following-sibling::editor)" behaviour="inline">
+                        <outputRendition xml:space="preserve" scope="after">content: ' – ';</outputRendition>
+                    </model>
+                    <model behaviour="inline">
+                        <desc>Editor of the document</desc>
+                    </model>
+                </elementSpec>
+                <elementSpec ident="affiliation" mode="change">
+                    <model predicate="$parameters?header='short'" behaviour="omit" />
+                    <model predicate="not(following-sibling::affiliation)" behaviour="inline">
+                        <outputRendition xml:space="preserve" scope="after">content: ', ';</outputRendition>
+                    </model>
+                    <model behaviour="inline">
+                        <desc>Editor of the document</desc>
+                    </model>
+                </elementSpec>
+
                 <elementSpec ident="entry" mode="add">
                     <model predicate="parent::sense or preceding-sibling::sense" behaviour="inline">
                         <desc>Dictionary entry that is part of the sense of another entry</desc>
