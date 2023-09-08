@@ -86,9 +86,10 @@ declare function idx:get-metadata($root as element(), $field as xs:string) {
             case "def-content"                            return $root//tei:sense//tei:def
             case "cit[@type=example]-content"             return $root//tei:sense//tei:cit[@type='example']/tei:quote
             case "gram[@type=pos]-realisation"            return idx:get-pos($root)
-            case "title[@type=main]-content"              return string-join((
-                                                               $header//tei:msDesc/tei:head, $header//tei:titleStmt/tei:title[@type = 'main'],
-                                                               $header//tei:titleStmt/tei:title), " - ")
+            case "title[@type=main|full]-content"         return string-join((
+                                                               $header//tei:msDesc/tei:head, 
+                                                               $header//tei:titleStmt/(tei:title[@type = ('main', 'full')]|tei:title)[1]
+                                                               ), " - ")
             case "gram[@type=pos]-content"                return idx:get-pos($root)
             case "orth[xml:lang]-content"                 return idx:get-object-language($root)
             case "polysemy"                               return count($root//tei:sense)
