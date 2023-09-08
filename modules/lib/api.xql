@@ -17,6 +17,7 @@ import module namespace vapi="http://teipublisher.com/api/view" at "api/view.xql
 import module namespace anno="http://teipublisher.com/api/annotations" at "api/annotations.xql";
 import module namespace custom="http://teipublisher.com/api/custom" at "../custom-api.xql";
 import module namespace nlp="http://teipublisher.com/api/nlp" at "api/nlp.xql";
+import module namespace lapi="http://teipublisher.com/api/teilex0" at "../teilex0.xql";
 
 declare option output:indent "no";
 
@@ -32,6 +33,6 @@ let $lookup := function($name as xs:string) {
         ()
     }
 }
-let $resp := roaster:route(("modules/custom-api.json", "modules/lib/api.json"), $lookup)
+let $resp := roaster:route(("modules/custom-api.json", "modules/teilex0-api.json", "modules/lib/api.json"), $lookup)
 return
     $resp
