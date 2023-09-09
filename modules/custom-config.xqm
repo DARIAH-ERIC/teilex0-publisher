@@ -132,3 +132,7 @@ declare variable $custom-config:autocomplete-max-items := 30;
     Function for formatting string for autocomplete.
 :)
 declare variable $custom-config:autocomplete-return-values := function($key, $count) {$key};
+
+declare variable $custom-config:facets-version := "-advanced" (: () :);
+
+declare variable $custom-config:query-facet-pattern := "^facet\[(.*)\]$$" (: () :);

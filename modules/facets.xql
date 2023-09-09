@@ -20,112 +20,34 @@ xquery version "3.1";
 module namespace facets="http://teipublisher.com/facets";
 
 import module namespace config="http://www.tei-c.org/tei-simple/config" at "config.xqm";
+import module namespace facets-advanced="http://teipublisher.com/facets-advanced" at "facets-advanced.xql";
+import module namespace facets-simple="http://teipublisher.com/facets-simple" at "facets-simple.xql";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 
-declare function facets:sort($facets as map(*)?) {
-    array {
-        if (exists($facets)) then
-            for $key in map:keys($facets)
-            let $value := map:get($facets, $key)
-            order by $key ascending
-            return
-                map { $key: $value }
+declare variable $facets:default-version := "-simple";
+
+declare %private function facets:dispatch($function as xs:string, $args as array(*)) {
+    let $version := if($config:facets-version = "") then "-simple" else $config:facets-version
+    let $fn := function-lookup(xs:QName("facets" || $version || ":" || $function), array:size($args))
+    let $fn := if (exists($fn)) then $fn
+        else
+            function-lookup(xs:QName("facets" || $facets:default-version || ":" || $function), array:size($args))
+    return
+        if (exists($fn)) then
+            apply($fn, $args)
         else
             ()
-    }
+};
+
+declare function facets:sort($facets as map(*)?) {
+    facets:dispatch("sort", [$facets])
 };
 
 declare function facets:print-table($config as map(*), $nodes as element()+, $values as xs:string*, $params as xs:string*) {
-    let $all := request:get-parameter("all-" || $config?dimension, ())
-    let $count := if ($all) then 50 else $config?max
-    let $facets :=
-        if ($all) then
-            if (exists($values)) then
-                ft:facets($nodes, $config?dimension, (), $values)
-            else
-                ft:facets($nodes, $config?dimension, ())
-        else
-            if (exists($values)) then
-                ft:facets($nodes, $config?dimension, $count, $values)
-            else
-                ft:facets($nodes, $config?dimension, $count)
-    return
-        if (map:size($facets) > 0) then
-            <table>
-            {
-                array:for-each(facets:sort($facets), function($entry) {
-                    map:for-each($entry, function($label, $freq) {
-                        <tr>
-                            <td>
-                                <paper-checkbox class="facet" name="facet-{$config?dimension}" value="{$label}">
-                                    { if ($label = $params) then attribute checked { "checked" } else () }
-                                    {
-                                        if (exists($config?output)) then
-                                            $config?output($label)
-                                        else
-                                            $label
-                                    }
-                                </paper-checkbox>
-                            </td>
-                            <td>{$freq}</td>
-                        </tr>,
-                        if (empty($params)) then
-                            ()
-                        else
-                            let $nested := facets:print-table($config, $nodes, ($values, head($params)), tail($params))
-                            return
-                                if ($nested and head($params) eq $label) then
-                                    <tr class="nested">
-                                        <td colspan="2">
-                                        {$nested}
-                                        </td>
-                                    </tr>
-                                else
-                                    ()
-                            })
-                })
-            }
-            </table>
-        else
-            ()
+    facets:dispatch("print-table", [$config, $nodes, $values, $params])
 };
 
 declare function facets:display($config as map(*), $nodes as element()+) {
-    let $params := request:get-parameter("facet-" || $config?dimension, ())
-    let $table := facets:print-table($config, $nodes, (), $params)
-
-    let $maxcount := 50
-    (: maximum number shown :)
-    let $max := head(($config?max, 50))
-
-    (: facet count for current values selected :)
-    let $fcount :=
-    map:size(
-     if (count($params)) then
-            ft:facets($nodes, $config?dimension, $maxcount, $params)
-        else
-            ft:facets($nodes, $config?dimension, $maxcount)
-    )
-
-    where $table
-    return
-        <div>
-            <h3><pb-i18n key="{$config?heading}">{$config?heading}</pb-i18n>
-             {
-                if ($fcount > $max) then
-                    <paper-checkbox class="facet" name="all-{$config?dimension}">
-                        { if (request:get-parameter("all-" || $config?dimension, ())) then attribute checked { "checked" } else () }
-                        <pb-i18n key="facets.show">Show top 50</pb-i18n>
-                    </paper-checkbox>
-                else
-                    ()
-            }
-            </h3>
-            <div class="facet-block">
-            {
-                $table
-            }
-            </div>
-        </div>
+    facets:dispatch("display", [$config, $nodes])
 };
