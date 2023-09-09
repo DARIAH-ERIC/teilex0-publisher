@@ -307,7 +307,7 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         <field name="definition" expression="nav:get-metadata(., 'def-content')"/>
                         <field name="example" expression="nav:get-metadata(., 'cit[@type=example]-content')"/>
                         <field name="pos" expression="nav:get-metadata(., 'gram[@type=pos]-content')"/>
-                        <facet dimension="dictionary" expression="nav:get-metadata(ancestor::tei:TEI, 'title[@type=main]-content')"/>
+                        <facet dimension="dictionary" expression="nav:get-metadata(ancestor::tei:TEI, 'title[@type=main|full]-content')"/>
                         <facet dimension="objectLanguage" expression="nav:get-metadata(., 'orth[xml:lang]-content')"/>
                         <facet dimension="pos" expression="nav:get-metadata(., 'gram[@type=pos]-realisation')"/>
                         <facet dimension="polysemy" expression="nav:get-metadata(., 'polysemy')"/>
