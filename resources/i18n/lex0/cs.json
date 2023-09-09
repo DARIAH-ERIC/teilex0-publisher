@@ -23,6 +23,11 @@
             "partOfSpeech": "Slovní druh",
             "pos" : "Slovní druh",
             "show-all": "Zobrazit vše"
+        },
+        "dictionary" : {
+            "parts" : {
+                "headwords-only" : "Pouze heslová slova"
+            }
         }
     }
 }

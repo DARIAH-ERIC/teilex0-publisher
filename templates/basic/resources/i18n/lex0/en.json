@@ -23,6 +23,11 @@
             "partOfSpeech": "Part of speech",
             "pos" : "Part of speech",           
             "show-all": "Show all"
+        },
+        "dictionary" : {
+            "parts" : {
+                "headwords-only" : "Headwords only"
+            }
         }
     }
 }
