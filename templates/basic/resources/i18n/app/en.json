@@ -1,28 +1,5 @@
 {
-    "lex0" : {
-        "facets" : {
-            "domain": "Domain label",
-            "object-language": "Object language",
-            "target-language": "Target language",
-            "polysemy": "Polysemy",
-            "dictionary": "Dictionary",
-            "entry-type" : "Entry type",
-            "attitude" : "Attitude label",
-            "frequency" : "Frequency label",
-            "geographic" : "Geographic label",
-            "hint" : "Hint label",
-            "meaningType" : "Meaning type label",
-            "normativity" : "normativity label",
-            "socioCultural" : "Socio-cultural label",
-            "textType" : "Text type label",
-            "time" : "Temporal label",
-            "attestation" : "Attestation",
-            "attestation-author" : "Attestation (author)",
-            "attestation-title" : "Attestation (title)",
-            "metamark" : "Metamark",
-            "partOfSpeech": "Part of speech",
-            "pos" : "Part of speech",           
-            "show-all": "Show all"
-        }
+    "myapp": {
+        "title": "Foo"
     }
 }
