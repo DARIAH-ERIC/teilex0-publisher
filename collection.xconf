@@ -47,6 +47,7 @@
                   -{value} = value of the attribute
                   -{value|value} = more possible values
                   -{realisation} = either value of the attribute, or content of the element
+                  -{hierarchy} = hierarchical values defined in the taxonomy or in the value itself (like date)
                   
                 -->
                 <field name="sortKey" expression="nav:get-metadata(., 'sortKey-realisation')"/>
@@ -59,6 +60,7 @@
                 <field name="pos" expression="nav:get-metadata(., 'gram[@type=pos]-content')"/>
                 <facet dimension="dictionary" expression="nav:get-metadata(ancestor::tei:TEI, 'title[@type=main|full]-content')"/>
                 <facet dimension="objectLanguage" expression="nav:get-metadata(., 'orth[xml:lang]-content')"/>
+                <facet dimension="targetLanguage" expression="nav:get-metadata(., 'cit|def[xml:lang]-content')"/>
                 <facet dimension="pos" expression="nav:get-metadata(., 'gram[@type=pos]-realisation')"/>
                 <facet dimension="polysemy" expression="nav:get-metadata(., 'polysemy')"/>
                 
@@ -68,6 +70,7 @@
                 
                 <facet dimension="attitude" expression="nav:get-metadata(., 'usg[@type=attitude]-realisation')"/>
                 <facet dimension="domain" expression="nav:get-metadata(., 'usg[@type=domain]-realisation')"/>
+                <facet dimension="domain-hierarchy" expression="nav:get-metadata(., 'usg[@type=domain]-hierarchy')"  hierarchical="yes" />
                 <facet dimension="frequency" expression="nav:get-metadata(., 'usg[@type=frequency]-realisation')"/>
                 <facet dimension="geographic" expression="nav:get-metadata(., 'usg[@type=geographic]-realisation')"/>
                 <facet dimension="hint" expression="nav:get-metadata(., 'usg[@type=hint]-realisation')"/>
