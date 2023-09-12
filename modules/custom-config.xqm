@@ -18,26 +18,38 @@ declare variable $custom-config:facets := [
         "hierarchical": false()
     },
     map {
-        "dimension": "polysemy",
-        "heading": "lex0.facets.polysemy",
-        "max": 5,
-        "hierarchical": false()
-    },
-    map {
         "dimension": "entry-type",
         "heading": "lex0.facets.entry-type",
         "max": 5,
         "hierarchical": false()
     },
     map {
-        "dimension": "attitude",
-        "heading": "lex0.facets.attitude",
+        "dimension": "pos",
+        "heading": "lex0.facets.pos",
+        "max": 5,
+        "hierarchical": false()
+    },
+    map {
+        "dimension": "polysemy",
+        "heading": "lex0.facets.polysemy",
         "max": 5,
         "hierarchical": false()
     },
     map {
         "dimension": "domain",
         "heading": "lex0.facets.domain",
+        "max": 5,
+        "hierarchical": false()
+    },
+    map {
+        "dimension" : "domain-hierarchy",
+        "heading": "lex0.facets.domain-hierarchy",
+        "max": 5,
+        "hierarchical": true()
+    },
+    map {
+        "dimension": "attitude",
+        "heading": "lex0.facets.attitude",
         "max": 5,
         "hierarchical": false()
     },
@@ -110,12 +122,6 @@ declare variable $custom-config:facets := [
     map {
         "dimension": "metamark",
         "heading": "lex0.facets.metamark",
-        "max": 5,
-        "hierarchical": false()
-    },
-    map {
-        "dimension": "pos",
-        "heading": "lex0.facets.pos",
         "max": 5,
         "hierarchical": false()
     }
