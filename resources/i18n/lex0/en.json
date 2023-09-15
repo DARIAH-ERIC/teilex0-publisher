@@ -2,7 +2,7 @@
     "lex0" : {
         "facets" : {
             "domain": "Domain label",
-            "domain-hierarchy": "Domain label (hierarchichy)",
+            "domain-hierarchy": "Domain label (hierarchy)",
             "object-language": "Object language",
             "target-language": "Target language",
             "polysemy": "Polysemy",
