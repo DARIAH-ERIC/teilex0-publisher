@@ -24,7 +24,7 @@ declare function local:mkcol-recursive($collection, $components) {
 
 (: Helper function to recursively create a collection hierarchy. :)
 declare function local:mkcol($collection, $path) {
-    local:mkcol-recursive($collection, tokenize($path, "/"))
+    local:mkcol-recursive($collection, tokenize($path, "/")[. != ''])
 };
 
 (: store the collection configuration :)
