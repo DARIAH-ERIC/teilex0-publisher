@@ -34,3 +34,7 @@
     grid-area: end;
     justify-self: end;
 }
+
+.lex0.principal:not(.last)::after, .lex0.editor:not(.last)::after {
+    content: ' – ';
+}

@@ -45,14 +45,21 @@
                     <model behaviour="block" predicate="$parameters?header='short'" />
                 </elementSpec>
                 <elementSpec ident="principal" mode="change">
-                    <model predicate="$parameters?header='short' and (following-sibling::editor)" behaviour="inline">
+                    <model predicate="$parameters?header='short' and (following-sibling::editor)" behaviour="inline" cssClass="lex0 principal">
+                        <desc>Principal researcher of the project</desc>
+                        <outputRendition xml:space="preserve" scope="after">content: ' – ';</outputRendition>
+                    </model>
+                    <model predicate="$parameters?header='short' and not(following-sibling::editor | following-sibling::principal)" behaviour="inline" cssClass="lex0 principal last">
                         <desc>Principal researcher of the project</desc>
                         <outputRendition xml:space="preserve" scope="after">content: ' – ';</outputRendition>
                     </model>
                     <model predicate="ancestor::teiHeader" behaviour="inline" />
                 </elementSpec>
                 <elementSpec ident="editor" mode="change">
-                    <model predicate="$parameters?header='short' and not(following-sibling::editor)" behaviour="inline">
+                    <model predicate="$parameters?header='short' and following-sibling::editor" behaviour="inline" cssClass="lex0 editor">
+                        <outputRendition xml:space="preserve" scope="after">content: ' – ';</outputRendition>
+                    </model>
+                    <model predicate="$parameters?header='short' and not(following-sibling::editor)" behaviour="inline" cssClass="lex0 editor last">
                         <outputRendition xml:space="preserve" scope="after">content: ' – ';</outputRendition>
                     </model>
                     <model behaviour="inline">
