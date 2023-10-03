@@ -43,9 +43,14 @@ declare variable $config:webcomponents := "$$webcomponents-version$$";
  : CDN URL to use for loading webcomponents. Could be changed if you created your
  : own library extending pb-components and published it to a CDN.
  :)
-declare variable $config:webcomponents-cdn := "https://cdn.jsdelivr.net/npm/@teipublisher/pb-components";
+(: declare variable $config:webcomponents-cdn := "https://cdn.jsdelivr.net/npm/@teipublisher/pb-components"; :)
 (: declare variable $config:webcomponents-cdn := "https://cdn.tei-publisher.com/"; :)
 (: declare variable $config:webcomponents-cdn := "http://localhost:8000"; :)
+
+declare variable $config:webcomponents-cdn := if($config:webcomponents = "dev") then
+        "http://localhost:8000"
+    else
+        "https://cdn.jsdelivr.net/npm/@teipublisher/pb-components";
 
 (:~~
  : A list of regular expressions to check which external hosts are
@@ -69,7 +74,7 @@ declare variable $config:enable-proxy-caching :=
 ;
 
 (:~
- : Should documents be located by xml:id or filename?
+ : Should documents be located by xml:id (true()) or filename (false())?
  :)
 declare variable $config:address-by-id := false();
 
@@ -506,7 +511,10 @@ declare function config:default-config($docUri as xs:string?) {
 declare function config:document-type($div as element()) {
     switch (namespace-uri($div))
         case "http://www.tei-c.org/ns/1.0" return
-            "tei"
+            if($div/ancestor-or-self::tei:TEI/@type = 'lex-0') then
+                "lex0"
+            else
+                "tei"
         case "http://docbook.org/ns/docbook" return
             "docbook"
         default return
@@ -644,4 +652,60 @@ declare function config:get-fonts-dir() as xs:string? {
             $repoDir || "/resources/fonts"
         else
             ()
+};
+
+(: 
+Maximum hits available for user. 
+If set to 0 all hits are available.
+Can ba caltulated, for example admins can have access to more hits then other users.
+:)
+declare variable $config:maximum-hits-limit := 0;
+
+
+(:
+Name of field which can contain localized values.
+Localized values are taken from taxonomy.
+:)
+declare function config:get-index-field-for-localized-values($field as xs:string) as xs:string {
+    if ($field = ("partOfSpeech", "style")) 
+        then $field || "All"
+    else $field
+};
+
+(:
+Maximum items returned for autocomplete function.
+:)
+declare variable $config:autocomplete-max-items := 30;
+
+
+(:~
+ : Function used for autocomplete suggesttion; what value will be displayed
+:)
+declare variable $config:autocomplete-return-values := function($key, $count) {$key};
+
+(:~
+ : Filter used for the list of available templates. 
+ : If the return value is set to `true()`, all templates are returned.
+ : You can define filter based on the template title or file name
+ : in combination with request parameters like `path`, `language` or `template`.
+:)
+declare function config:template-filter($request as map(*), $item as map(*)) {
+    let $f := function-lookup(xs:QName('custom-config:template-filter'), 2)
+    return if(exists($f)) then
+        $f($request, $item)
+    else
+        true()
+};
+
+(:~
+ : Function used for the sort of available templates.
+ : If the return value is set to `1` (or another the same value) the sort is undetermined.
+ : You can sort templates based on the title or file name.
+:)
+declare function config:template-sort($request as map(*), $item as map(*)) {
+    let $f := function-lookup(xs:QName('custom-config:template-sort'), 2)
+    return if(exists($f)) then
+        $f($request, $item)
+    else
+        1
 };
