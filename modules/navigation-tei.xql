@@ -20,6 +20,7 @@ xquery version "3.1";
 module namespace nav="http://www.tei-c.org/tei-simple/navigation/tei";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
+declare namespace exist="http://exist.sourceforge.net/NS/exist";
 
 import module namespace config="http://www.tei-c.org/tei-simple/config" at "config.xqm";
 
