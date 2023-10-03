@@ -296,7 +296,9 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         {XYZ}:
                         -{content} = content of the element
                         -{value} = value of the attribute
+                        -{value|value} = more possible values
                         -{realisation} = either value of the attribute, or content of the element
+                        -{hierarchy} = hierarchical values defined in the taxonomy or in the value itself (like date)
                         
                         -->
                         <field name="sortKey" expression="nav:get-metadata(., 'sortKey-realisation')"/>
@@ -309,6 +311,7 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         <field name="pos" expression="nav:get-metadata(., 'gram[@type=pos]-content')"/>
                         <facet dimension="dictionary" expression="nav:get-metadata(ancestor::tei:TEI, 'title[@type=main|full]-content')"/>
                         <facet dimension="objectLanguage" expression="nav:get-metadata(., 'orth[xml:lang]-content')"/>
+                        <facet dimension="targetLanguage" expression="nav:get-metadata(., 'cit|def[xml:lang]-content')"/>
                         <facet dimension="pos" expression="nav:get-metadata(., 'gram[@type=pos]-realisation')"/>
                         <facet dimension="polysemy" expression="nav:get-metadata(., 'polysemy')"/>
                         
@@ -318,6 +321,8 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         
                         <facet dimension="attitude" expression="nav:get-metadata(., 'usg[@type=attitude]-realisation')"/>
                         <facet dimension="domain" expression="nav:get-metadata(., 'usg[@type=domain]-realisation')"/>
+                        <facet dimension="domain-hierarchy" expression="nav:get-metadata(., 'usg[@type=domain]-hierarchy')"  hierarchical="yes" />
+                        <facet dimension="domain-contemporary" expression="nav:get-metadata(., 'usg[@type=domain][not(node())]-hierarchy')"  hierarchical="yes" />
                         <facet dimension="frequency" expression="nav:get-metadata(., 'usg[@type=frequency]-realisation')"/>
                         <facet dimension="geographic" expression="nav:get-metadata(., 'usg[@type=geographic]-realisation')"/>
                         <facet dimension="hint" expression="nav:get-metadata(., 'usg[@type=hint]-realisation')"/>
@@ -510,6 +515,7 @@ declare function deploy:create-app($collection as xs:string, $json as map(*)) {
         deploy:copy-resource($collection || "/data", $base || "/data", "taxonomy.xml", ($json?owner, "tei"), "rw-r--r--"),
         deploy:copy-resource($collection || "/resources/css", $base || "/resources/css", "theme.css", ($json?owner, "tei"), "rw-r--r--"),
         deploy:copy-resource($collection || "/resources/i18n", $base || "/resources/i18n", "languages.json", ($json?owner, "tei"), "rw-r--r--"),
+        deploy:copy-collection($collection || "/resources/i18n/lex0", $base || "/resources/i18n/lex0", ($json?owner, "tei"), "rw-r--r--"),
         deploy:copy-resource($collection, $base, "icon.png", ($json?owner, "tei"), "rw-r--r--"),
         xmldb:store($collection, "package.json", deploy:package-json($json), "application/json"),
         xmldb:rename($collection, "gitignore.tmpl", ".gitignore")
