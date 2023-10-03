@@ -30,6 +30,16 @@
             "parts" : {
                 "headwords-only" : "Headwords only"
             }
+        },
+        "collection" : {
+            "about" : {
+                "header" : "About the Project",
+                "description" : "Description of the project."
+            },
+            "dictionaries" : {
+                "header" : "Dictionaries",
+                "description" : "Scholar edtions of the dictionaries."
+            }
         }
     }
 }
