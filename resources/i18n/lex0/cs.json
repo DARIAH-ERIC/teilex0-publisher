@@ -30,6 +30,16 @@
             "parts" : {
                 "headwords-only" : "Pouze heslová slova"
             }
+        },
+        "collection" : {
+            "about" : {
+                "header" : "O projektu",
+                "description" : "Popis projektu."
+            },
+            "dictionaries" : {
+                "header" : "Slovníky",
+                "description" : "Vědecké digitální edice slovnků."
+            }
         }
     }
 }
