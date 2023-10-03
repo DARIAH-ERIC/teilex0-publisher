@@ -18,6 +18,7 @@ local.build.properties
 resources/scripts/*.js
 resources/scripts/*.map
 !resources/scripts/browse.js
+!resources/scripts/teilex0.js
 resources/lib/
 resources/css/leaflet/
 resources/css/prismjs

@@ -494,6 +494,7 @@ declare function deploy:create-app($collection as xs:string, $json as map(*)) {
         deploy:copy-collection($collection || "/resources/fonts", $base || "/resources/fonts", ($json?owner, "tei"), "rw-r--r--"),
         deploy:copy-collection($collection || "/resources/scripts/annotations", $base || "/resources/scripts/annotations", ($json?owner, "tei"), "rw-r--r--"),
         deploy:copy-resource($collection || "/resources/scripts", $base || "/resources/scripts", "browse.js", ($json?owner, "tei"), "rw-r--r--"),
+        deploy:copy-resource($collection || "/resources/scripts", $base || "/resources/scripts", "teilex0.js", ($json?owner, "tei"), "rw-r--r--"),
         deploy:expand($collection || "/modules", "config.xqm", $replacements),
         deploy:store-libs($collection, ($json?owner, "tei"), "rw-r--r--"),
         deploy:expand($collection || "/modules/lib", "api.json", $replacements),
