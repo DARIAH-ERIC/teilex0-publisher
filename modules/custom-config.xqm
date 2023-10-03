@@ -41,9 +41,17 @@ declare variable $custom-config:facets := [
         "max": 5,
         "hierarchical": false()
     },
+    (:
     map {
         "dimension" : "domain-hierarchy",
         "heading": "lex0.facets.domain-hierarchy",
+        "max": 5,
+        "hierarchical": true()
+    },
+    :)
+    map {
+        "dimension" : "domain-contemporary",
+        "heading": "lex0.facets.domain-contemporary",
         "max": 5,
         "hierarchical": true()
     },
@@ -142,3 +150,13 @@ declare variable $custom-config:autocomplete-return-values := function($key, $co
 declare variable $custom-config:facets-version := "-advanced" (: () :);
 
 declare variable $custom-config:query-facet-pattern := "^facet\[(.*)\]$$" (: () :);
+
+declare function custom-config:template-filter($request as map(*), $item as map(*)) {
+    (: contains($item?title, 'Lex-0') :)
+    true()
+};
+
+declare function custom-config:template-sort($request as map(*), $item as map(*)) {
+    (: $item?title :)
+    1
+};

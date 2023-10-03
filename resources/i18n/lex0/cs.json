@@ -3,6 +3,7 @@
         "facets" : {
             "domain": "Charakteristika sémantického okruhu",
             "domain-hierarchy": "Charakteristika sémantického okruhu (hierarchicky)",
+            "domain-contemporary" : "Moderní klasifikace",
             "object-language": "Výchozí jazyk",
             "target-language": "Cílový jazyk",
             "polysemy": "Polysémie",
