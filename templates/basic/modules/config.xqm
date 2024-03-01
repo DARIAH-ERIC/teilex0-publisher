@@ -9,6 +9,9 @@ module namespace config="http://www.tei-c.org/tei-simple/config";
 import module namespace http="http://expath.org/ns/http-client" at "java:org.exist.xquery.modules.httpclient.HTTPClientModule";
 import module namespace nav="http://www.tei-c.org/tei-simple/navigation" at "navigation.xql";
 import module namespace tpu="http://www.tei-c.org/tei-publisher/util" at "lib/util.xql";
+import module namespace custom-config = "http://www.tei-c.org/tei-simple/custom-config" at "custom-config.xqm";
+
+declare namespace array = "http://www.w3.org/2005/xpath-functions/array";
 
 declare namespace templates="http://exist-db.org/xquery/html-templating";
 
@@ -120,7 +123,7 @@ declare variable $config:pagination-fill := 5;
  : Display configuration for facets to be shown in the sidebar. The facets themselves
  : are configured in the index configuration, collection.xconf.
  :)
-declare variable $config:facets := [
+declare variable $config:facets := array:join( ([
     map {
         "dimension": "genre",
         "heading": "facets.genre",
@@ -142,7 +145,7 @@ declare variable $config:facets := [
                 default return $label
         }
     }
-];
+], $custom-config:facets ));
 
 (:
  : The function to be called to determine the next content chunk to display.
@@ -172,7 +175,7 @@ declare variable $config:css-content-class := "content";
  : domain will share their users, so a user logged into application A
  : will be able to access application B.
  :)
-declare variable $config:login-domain := "org.exist.tei-simple";
+declare variable $config:login-domain := ($custom-config:login-domain, "org.exist.tei-simple")[1];
 
 (:~
  : Configuration XML for Apache FOP used to render PDF. Important here
