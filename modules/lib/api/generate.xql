@@ -415,7 +415,9 @@ declare function deploy:expand($collection as xs:string, $resource as xs:string,
 
 declare function deploy:store-libs($target as xs:string, $userData as xs:string+, $permissions as xs:string) {
     let $path := $config:app-root || "/modules"
-    for $lib in ("map.xql", "facets.xql", "registers.xql", "annotation-config.xqm", "nlp-config.xqm", "iiif-config.xqm", xmldb:get-child-resources($path)[starts-with(., "navigation")],
+    for $lib in ("map.xql", "facets.xql", "iiif.xql", "registers.xql", "teilex0.xql",
+        xmldb:get-child-resources($path)[matches(., "-config\.xqm")],
+        xmldb:get-child-resources($path)[starts-with(., "navigation")],
         xmldb:get-child-resources($path)[starts-with(., "query")])
     return (
         xmldb:copy-resource($path, $lib, $target || "/modules", $lib)
@@ -508,6 +510,8 @@ declare function deploy:create-app($collection as xs:string, $json as map(*)) {
         deploy:expand($collection || "/modules/lib", "api.json", $replacements),
         deploy:copy-resource($collection || "/modules", $base || "/modules", "custom-api.json", ($json?owner, "tei"), "rw-r--r--"),
         deploy:expand($collection || "/modules", "custom-api.json", $replacements),
+deploy:copy-resource($collection || "/modules", $base || "/modules", "teilex0-api.json", ($json?owner, "tei"), "rw-r--r--"),
+        deploy:expand($collection || "/modules", "teilex0-api.json", $replacements),
         deploy:copy-odd($collection, $json),
         deploy:create-transform($collection),
         deploy:copy-resource($collection, $base, "index.xql", ($json?owner, "tei"), "rw-r--r--"),
