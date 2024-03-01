@@ -3,6 +3,7 @@
         "facets": {
             "domain": "Etiqueta de domínio",
             "domain-hierarchy": "Etiqueta de domínio (hierarquia)",
+            "domain-contemporary" : "Classificação contemporânea",
             "object-language": "Língua-objeto",
             "target-language": "Língua-alvo",
             "polysemy": "Polissemia",
