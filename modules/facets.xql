@@ -40,8 +40,8 @@ declare %private function facets:dispatch($function as xs:string, $args as array
             ()
     };
 
-declare function facets:sort($facets as map(*)?) {
-    facets:dispatch("sort", [$facets])
+declare function facets:sort($config as map(*), $lang as xs:string?, $facets as map(*)?) {
+    facets:dispatch("sort", [$config, $lang, $facets])
 };
 
 declare function facets:print-table($config as map(*), $nodes as element()+, $values as xs:string*, $params as xs:string*) {
