@@ -31,7 +31,7 @@ declare variable $deploy:EXPATH_DESCRIPTOR :=
         version="0.1" spec="1.0">
         <dependency processor="http://exist-db.org" semver-min="5.3.0"/>
         <dependency package="http://exist-db.org/html-templating" semver="1"/>
-        <dependency package="http://existsolutions.com/apps/tei-publisher-lib" semver="4"/>
+        <dependency package="http://existsolutions.com/apps/tei-publisher-lib" semver="3"/>
         <dependency package="http://e-editiones.org/roaster" semver="1"/>
     </package>
 ;
@@ -317,7 +317,7 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         <field name="definition" expression="nav:get-metadata(., 'def-content')"/>
                         <field name="example" expression="nav:get-metadata(., 'cit[@type=example]-content')"/>
                         <field name="pos" expression="nav:get-metadata(., 'gram[@type=pos]-content')"/>
-                        <facet dimension="dictionary" expression="nav:get-metadata(ancestor::tei:TEI, 'title[@type=main]-content')"/>
+                        <facet dimension="dictionary" expression="nav:get-metadata(ancestor::tei:TEI, 'title[@type=main|full]-content')"/>
                         <facet dimension="objectLanguage" expression="nav:get-metadata(., 'orth[xml:lang]-content')"/>
                         <facet dimension="pos" expression="nav:get-metadata(., 'gram[@type=pos]-realisation')"/>
                         <facet dimension="polysemy" expression="nav:get-metadata(., 'polysemy')"/>
