@@ -1,5 +1,6 @@
 xquery version "3.0";
 
+import module namespace pmu="http://www.tei-c.org/tei-simple/xquery/util";
 import module namespace odd="http://www.tei-c.org/tei-simple/odd2odd";
 import module namespace nav="http://www.tei-c.org/tei-simple/navigation" at "modules/navigation.xql";
 import module namespace config="http://www.tei-c.org/tei-simple/config" at "modules/config.xqm";
@@ -67,7 +68,6 @@ sm:chmod(xs:anyURI($target || "/data/jats"), "rwxrwxr-x"),
 sm:chown(xs:anyURI($target || "/data/jats"), "tei-demo"),
 sm:chmod(xs:anyURI($target || "/data/teilex0"), "rwxrwxr-x"),
 sm:chown(xs:anyURI($target || "/data/teilex0"), "tei-demo"),
-sm:chmod(xs:anyURI($target || "/data/register.xml"), "rw-rw-r--"),
 xmldb:create-collection($target || "/data", "temp"),
 sm:chmod(xs:anyURI($target || "/data/temp"), "rwxrwxr-x"),
 sm:chown(xs:anyURI($target || "/data/temp"), "tei"),
