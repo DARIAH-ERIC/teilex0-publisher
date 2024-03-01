@@ -88,8 +88,8 @@ declare function query:options($sortBy as xs:string*, $field as xs:string?) {
         map {
             "facets":
                 map:merge((
-                    for $param in request:get-parameter-names()[starts-with(., 'facet-')]
-                    let $dimension := substring-after($param, 'facet-')
+                    for $param in request:get-parameter-names()[matches(., $config:query-facet-pattern)]
+                    let $dimension := replace($param, $config:query-facet-pattern , '$1')
                     return
                         map {
                             $dimension: request:get-parameter($param, ())
@@ -111,7 +111,7 @@ declare function query:query-metadata($root as xs:string?, $field as xs:string?,
         jats-query:query-metadata($root, $field, $query, $sort)
     )
     let $mode := 
-        if ((empty($query) or $query = '') and empty(request:get-parameter-names()[starts-with(., 'facet-')])) then 
+        if ((empty($query) or $query = '') and empty(request:get-parameter-names()[matches(., $config:query-facet-pattern)])) then 
             "browse"
         else 
             "search"

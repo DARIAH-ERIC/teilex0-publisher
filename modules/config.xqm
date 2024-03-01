@@ -185,6 +185,32 @@ declare variable $config:facets := array:join( ( [
 ], $custom-config:facets ));
 
 (:
+ : Which module will be used for generating facets.
+ : Module is choosen by the value of suffix in the module's name (after hyphen `-`).
+ : If `$custom-config:facets-version` is set to empty value (`()`) 
+ : the default implementation of facets will be used.
+:)
+declare variable $config:facets-version := ($custom-config:facets-version, "-simple")[1];
+
+(:
+ : Regular expression used for matching facet parameter in request.
+ : The expression is also used for creating facet name in facet HTML form.
+ : For example, facet name can look like `facet-dimension` or `facet[dimension]`.
+:)
+declare variable $config:query-facet-pattern := ($custom-config:query-facet-pattern, "^facet-(.*)$$")[1];
+
+(:
+ : Returns the name of the facet parametr used in query path.
+ : The same pattern is used for constructing the parameter name
+ : and for retrieving facet' name from the query path parameter.
+:)
+
+declare function config:facet-name($dimension as xs:string) {
+    translate($config:query-facet-pattern, "^\$$", "") => replace("\(\.\*\)", $dimension)
+};
+    
+
+(:
  : The function to be called to determine the next content chunk to display.
  : It takes two parameters:
  :

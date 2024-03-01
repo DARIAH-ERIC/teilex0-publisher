@@ -415,8 +415,9 @@ declare function deploy:expand($collection as xs:string, $resource as xs:string,
 
 declare function deploy:store-libs($target as xs:string, $userData as xs:string+, $permissions as xs:string) {
     let $path := $config:app-root || "/modules"
-    for $lib in ("map.xql", "facets.xql", "iiif.xql", "registers.xql", "teilex0.xql",
+    for $lib in ("map.xql", "iiif.xql", "teilex0.xql",
         xmldb:get-child-resources($path)[matches(., "-config\.xqm")],
+        xmldb:get-child-resources($path)[starts-with(., "facets")],
         xmldb:get-child-resources($path)[starts-with(., "navigation")],
         xmldb:get-child-resources($path)[starts-with(., "query")])
     return (
