@@ -12,6 +12,11 @@ on:
       - "v*.*.*"
 
   workflow_dispatch:
+    inputs:
+      tags: 
+        description: "Version of the library"
+        required: true
+        type: string
 
 permissions:
   contents: write
