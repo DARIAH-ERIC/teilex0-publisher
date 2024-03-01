@@ -25,6 +25,8 @@ import module namespace config="http://www.tei-c.org/tei-simple/config" at "conf
 import module namespace custom-config="http://www.tei-c.org/tei-simple/custom-config" at "custom-config.xqm";
 import module namespace nav="http://www.tei-c.org/tei-simple/navigation/tei" at "navigation-tei.xql";
 import module namespace query="http://www.tei-c.org/tei-simple/query" at "query.xql";
+import module namespace teilex0="http://teipublisher.com/api/teilex0" at "teilex0.xql";
+
 
 declare function lapi:query-default($fields as xs:string+, $query as xs:string, $target-texts as xs:string*,
     $sortBy as xs:string*) {
@@ -232,3 +234,8 @@ declare function lapi:get-current($config as map(*), $div as node()?) {
         else
             (nav:filler($config, $div), $div)[1]
 };
+
+
+declare function lapi:project($request as map(*)) { teilex0:project($request) };
+
+declare function lapi:version($request as map(*)) { teilex0:version($request) };
