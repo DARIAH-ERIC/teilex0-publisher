@@ -478,6 +478,8 @@ declare function dapi:get-fragment($request as map(*), $docs as node()*, $path a
             return
                 if ($request?parameters?format = "html") then
                     router:response(200, "text/html", $transformed?content)
+                else if ($request?parameters?format = "xml") then
+                    router:response(200, "application/xml", $content)
                 else
                     let $next := if ($view = "single") then () else $config:next-page($xml?config, $xml?data, $view)
                     let $prev := if ($view = "single") then () else $config:previous-page($xml?config, $xml?data, $view)
