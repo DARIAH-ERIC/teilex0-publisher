@@ -22,6 +22,7 @@ module namespace facets="http://teipublisher.com/facets";
 import module namespace config="http://www.tei-c.org/tei-simple/config" at "config.xqm";
 import module namespace facets-advanced="http://teipublisher.com/facets-advanced" at "facets-advanced.xql";
 import module namespace facets-simple="http://teipublisher.com/facets-simple" at "facets-simple.xql";
+import module namespace facets-common="http://teipublisher.com/facets-common" at "facets-common.xql";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 
@@ -29,12 +30,13 @@ declare variable $facets:default-version := "-simple";
 
 declare %private function facets:dispatch($function as xs:string, $args as array(*)) {
     let $version := if($config:facets-version = "") then "-simple" else $config:facets-version
-            let $fn := function-lookup(xs:QName("facets" || $version || ":" || $function), array:size($args))
-            let $fn := if (exists($fn)) then $fn
+    let $fn := function-lookup(xs:QName("facets" || $version || ":" || $function), array:size($args))
+    let $fn := if (exists($fn)) then 
+            $fn
         else
             function-lookup(xs:QName("facets" || $facets:default-version || ":" || $function), array:size($args))
-            return
-                if (exists($fn)) then
+    return
+        if (exists($fn)) then
             apply($fn, $args)
         else
             ()
@@ -50,4 +52,8 @@ declare function facets:print-table($config as map(*), $nodes as element()+, $va
 
 declare function facets:display($config as map(*), $nodes as element()+) {
     facets:dispatch("display", [$config, $nodes])
+};
+
+declare function facets:translate($config as map(*)?, $language as xs:string?, $label as xs:string) {
+    facets-common:translate($config, $language, $label)
 };
