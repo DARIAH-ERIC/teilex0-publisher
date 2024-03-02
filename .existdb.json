@@ -13,6 +13,7 @@
         "interval": 500,
         "ignore": [
             ".existdb.json",
+            "local*.properties",
             ".git/**",
             ".vs/**",
             ".vscode/**",
