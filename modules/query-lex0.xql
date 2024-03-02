@@ -78,13 +78,21 @@ declare function lapi:query-default($fields as xs:string+, $query as xs:string, 
 };
 
 declare function lapi:query-metadata($path as xs:string?, $field as xs:string?, $query as xs:string?, $sort as xs:string) {
+    let $field-name := if($field = "entry") then
+            "text" 
+         else
+             ($field, "text")[1]
     let $queryExpr := 
         if ($field = "file" or empty($query) or $query = '') then 
             "file:*" 
         else
-            ($field, "text")[1] || ":" || $query
-    let $options := query:options($sort, ($field, "text")[1])
-    let $result :=
+            $field-name || ":" || $query
+    let $options := query:options($sort, $field-name)
+    let $result := if ($field = "entry") then
+        $config:data-default ! (
+            collection(. || "/" || $path)//tei:text[.//tei:entry[ft:query(., $queryExpr, $options)]]
+        )
+        else
         $config:data-default ! (
             collection(. || "/" || $path)//tei:text[ft:query(., $queryExpr, $options)]
         )
