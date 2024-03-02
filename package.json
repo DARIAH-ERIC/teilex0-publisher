@@ -1,14 +1,14 @@
 {
-  "name": "tei-publisher-app",
+  "name": "teilex0-publisher",
   "version": "9.0.0",
-  "description": "TEI Publisher facilitates the integration of the TEI Processing Model into exist-db applications",
+  "description": "TEI Lex-0 Publisher facilitates the integration of the TEI Processing Model into exist-db applications, focusing on dictionaries in TEI Lex-0 standard",
   "scripts": {
     "test": "mocha --exit",
     "test-watch": "mocha --watch"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eeditiones/tei-publisher-app.git"
+    "url": "https://github.com/DARIAH-ERIC/teilex0-publisher.git"
   },
   "license": "GPL-3.0",
   "dependencies": {
