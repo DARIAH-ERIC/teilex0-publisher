@@ -74,6 +74,7 @@ sm:chown(xs:anyURI($target || "/data/temp"), "tei"),
 sm:chgrp(xs:anyURI($target || "/data/temp"), "tei"),
 sm:chmod(xs:anyURI($target || "/odd"), "rwxrwxr-x"),
 sm:chmod(xs:anyURI($target || "/transform"), "rwxrwxr-x"),
+local:generate-code($target),
 for $resource in xmldb:get-child-resources($target || "/transform")
 return
     if (ends-with($resource, "-main.xql")) then
