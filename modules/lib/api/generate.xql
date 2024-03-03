@@ -265,6 +265,7 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         <field name="author" expression="nav:get-metadata(ancestor::tei:TEI, 'author')"/>
                         <field name="language" expression="nav:get-metadata(ancestor::tei:TEI, 'language')"/>
                         <field name="date" expression="nav:get-metadata(ancestor::tei:TEI, 'date')"/>
+                        <field name="category" expression="nav:get-metadata(ancestor::tei:TEI, 'category')"/>
                         <field name="file" expression="util:document-name(.)"/>
                         <field name="text" expression="."/>
                         <facet dimension="genre" expression="nav:get-metadata(ancestor::tei:TEI, 'genre')" hierarchical="yes"/>
@@ -272,6 +273,7 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         <facet dimension="feature" expression="nav:get-metadata(ancestor::tei:TEI, 'feature')"/>
                         <facet dimension="form" expression="nav:get-metadata(ancestor::tei:TEI, 'form')"/>
                         <facet dimension="period" expression="nav:get-metadata(ancestor::tei:TEI, 'period')"/>
+                        <facet dimension="place" expression="nav:get-metadata(., 'place')"/>
                     </text>
                     {
                         if ($json?index = "tei:div") then
@@ -279,6 +281,7 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                                 <ignore qname="{$json?index}"/>
                                 <facet dimension="genre" expression="nav:get-metadata(ancestor::tei:TEI, 'genre')" hierarchical="yes"/>
                                 <facet dimension="language" expression="nav:get-metadata(ancestor::tei:TEI, 'language')"/>
+                                <facet dimension="place" expression="nav:get-metadata(., 'place')"/>
                             </text>
                         else
                             ()
@@ -311,6 +314,7 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         -{hierarchy} = hierarchical values defined in the taxonomy or in the value itself (like date)
                         
                         -->
+                        <field name="text" expression="." />
                         <field name="sortKey" expression="nav:get-metadata(., 'sortKey-realisation')"/>
                         <field name="letter" expression="nav:get-metadata(., 'head[@type=letter]-content')"/>
                         <field name="chapter-id" expression="nav:get-metadata(., 'chapter[@xml:id]-value')"/>
@@ -348,10 +352,10 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                         <facet dimension="metamark" expression="nav:get-metadata(., 'metamark[@function]-value')" />
                     </text>
                     <text qname="dbk:article">
-                        <field name="title" expression="nav:get-metadata(., 'title')"/>
-                        <field name="author" expression="nav:get-metadata(., 'author')"/>
-                        <field name="file" expression="util:document-name(.)"/>
-                        <field name="text" expression="."/>
+                        <field name="dbk.title" expression="nav:get-metadata(., 'title')"/>
+                        <field name="dbk.author" expression="nav:get-metadata(., 'author')"/>
+                        <field name="dbk.file" expression="util:document-name(.)"/>
+                        <field name="dbk.text" expression="."/>
                         <facet dimension="genre" expression="nav:get-metadata(., 'genre')" hierarchical="yes"/>
                         <facet dimension="language" expression="nav:get-metadata(., 'language')"/>
                     </text>
@@ -363,11 +367,17 @@ declare function deploy:store-xconf($collection as xs:string?, $json as map(*)) 
                     <text qname="dbk:title"/>
                     <!-- JATS -->
                     <text qname="body">
-                        <ignore qname="sect"/>
-                        <field name="file" expression="util:document-name(.)"/>
-                        <field name="title" expression="nav:get-metadata(ancestor::article, 'title')"/>
-                        <field name="author" expression="nav:get-metadata(ancestor::article, 'author')"/>
-                        <field name="text" expression="."/>
+                        <field name="jats.file" expression="util:document-name(.)"/>
+                        <field name="jats.title" expression="nav:get-metadata(., 'title')"/>
+                        <field name="jats.author" expression="nav:get-metadata(., 'author')"/>
+                        <field name="jats.text" expression="nav:get-metadata(., 'content')"/>
+                        <facet dimension="genre" expression="nav:get-metadata(., 'genre')" hierarchical="yes"/>
+                        <facet dimension="language" expression="head((./@xml:lang, 'en'))"/>
+                    </text>
+                    <text qname="sec">
+                        <ignore qname="sec"/>
+                        <facet dimension="genre" expression="nav:get-metadata(., 'genre')" hierarchical="yes"/>
+                        <facet dimension="language" expression="head((root(.)/@xml:lang, 'en'))"/>
                     </text>
                 </lucene>
             </index>
