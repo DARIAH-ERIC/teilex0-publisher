@@ -56,6 +56,9 @@
                </category>
                <category xml:id="form">
                   <catDesc>Form</catDesc>
+                  <category xml:id="born-digital">
+                     <catDesc>Born-digital</catDesc>
+                  </category>
                   <category xml:id="manuscript">
                      <catDesc>Manuscript</catDesc>
                   </category>

@@ -23028,6 +23028,16 @@
          </classDecl>
       </encodingDesc>
       <profileDesc>
+         <textClass>
+            <catRef scheme="#form"
+               target="#born-digital" />
+            <catRef scheme="#genre"
+               target="#lexicography" />
+            <catRef scheme="#feature"
+               target="#rtl" />
+            <catRef scheme="#period"
+               target="#modern" />
+         </textClass>         
          <langUsage>
             <language ident="fa" role="objectLanguage" usage="20">perština</language>
             <language ident="fa" role="sourceLanguage" usage="40">perština</language>
