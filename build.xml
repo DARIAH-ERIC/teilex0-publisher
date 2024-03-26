@@ -38,6 +38,7 @@
                 <exclude name=".github/**" />
                 <exclude name=".idea/" />
                 <exclude name=".travis.yml" />
+                <exclude name=".vs/**" />
                 <exclude name=".vscode/**" />
                 <exclude name="*.tmpl" />
                 <exclude name="*.properties" />
