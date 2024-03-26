@@ -17,7 +17,7 @@
         <isset property="git.commit" />
     </condition>
 
-    <target name="all" depends="clean,prepare,xar" description="main target, create xar file in build folder"/>
+    <target name="all" depends="clean,prepare,fix,xar" description="main target, create xar file in build folder"/>
 
     <target name="clean" description="delete all build artefacts">
         <delete includeemptydirs="true" failonerror="false">
@@ -118,6 +118,9 @@
         </zip>
     </target>
 
+    <target name="fix">
+        <fixcrlf srcdir="${app.build.dir}" includes="**/*.xq*" eol="lf" />
+    </target>
 
     <target name="upload" description="deploy tei-publisher xar file to target server">
         <input message="Enter password:" addproperty="server.pass" defaultvalue="">
